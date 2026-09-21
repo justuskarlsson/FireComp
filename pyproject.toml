@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "firecomp"
+version = "1.0.0"
+description = "FireComp: a global wildfire spread dataset and benchmark at 375 m resolution"
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+authors = [{ name = "Justus Karlsson" }]
+dependencies = [
+    "numpy",
+    "scipy",
+    "scikit-learn",
+    "torch",
+    "segmentation-models-pytorch",
+    "fire",
+    "jaxtyping",
+    "h5py",
+    "hdf5plugin",
+    "netcdf4",
+    "earthaccess",
+    "earthengine-api",
+    "requests",
+    "pandas",
+    "matplotlib",
+    "cartopy",
+    "Pillow",
+    "tqdm",
+    "pqdm",
+    "psutil",
+    "ninja",
+]
+
+[project.optional-dependencies]
+viewer = ["fastapi[standard]"]
+dev = ["pytest"]
+
+[tool.setuptools.packages.find]
+include = ["firecomp*"]

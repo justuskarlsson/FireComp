@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FireComp viewer</title>
+  </head>
+  <body>
+    <div id="app">
+      <aside id="sidebar">
+        <header>
+          <h1>FireComp</h1>
+          <p class="sub">next-day · new-fire equivalent</p>
+        </header>
+        <div class="filters">
+          <label>Model
+            <select id="model-select"></select>
+          </label>
+          <label>Compare
+            <select id="compare-select">
+              <option value="">—</option>
+            </select>
+          </label>
+          <label>Region
+            <select id="region-select">
+              <option value="">all</option>
+            </select>
+          </label>
+          <input id="search" type="search" placeholder="event / country / date" />
+        </div>
+        <div id="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th data-sort="start">date</th>
+                <th data-sort="region">region</th>
+                <th data-sort="id">event</th>
+                <th data-sort="n_samples">days</th>
+                <th data-sort="n_gt_px" title="positive GT pixels">GT+</th>
+                <th data-sort="iou">IoU</th>
+                <th data-sort="precision">P</th>
+                <th data-sort="recall">R</th>
+              </tr>
+            </thead>
+          </table>
+          <div id="table-body"></div>
+        </div>
+        <div id="status"></div>
+      </aside>
+      <main>
+        <div id="cesium-container"></div>
+        <div id="split-bar" hidden>
+          <div id="split-handle" role="slider" aria-label="Compare swipe" aria-valuemin="8" aria-valuemax="92" aria-valuenow="50">
+            <span id="split-left-label"></span>
+            <span class="split-grip">‹ ›</span>
+            <span id="split-right-label"></span>
+          </div>
+        </div>
+        <div id="hud">
+          <div id="layers"></div>
+          <label class="opacity">opacity
+            <input id="opacity" type="range" min="0.15" max="1" step="0.05" value="0.85" />
+          </label>
+          <div id="legend-wrap">
+            <img id="legend" alt="" />
+          </div>
+        </div>
+        <div id="event-bar" hidden>
+          <span id="day-controls">
+            <button type="button" id="prev-day">‹</button>
+            <input id="day-slider" type="range" min="0" max="0" value="0" />
+            <button type="button" id="next-day">›</button>
+          </span>
+          <label id="tile-wrap" hidden>tile
+            <select id="tile-select"></select>
+          </label>
+          <span id="day-label"></span>
+        </div>
+        <div id="metrics" hidden></div>
+      </main>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+{
+  "out_dir": "data/viewer",
+  "dataset_dir": "data/next_day_v3",
+  "fire_type": "vegetation",
+  "split": "test",
+  "target": "nf_equiv",
+  "models": [
+    {
+      "id": "morph",
+      "label": "Morphological",
+      "kind": "morphological",
+      "radius": 1,
+      "threshold": 0.5
+    },
+    {
+      "id": "unet",
+      "label": "UNet",
+      "kind": "checkpoint",
+      "checkpoint": "data/runs/grid/grid_unet_focal_a75_next/best.pt",
+      "tag": "grid_unet_focal_a75_next",
+      "threshold": 0.38
+    },
+    {
+      "id": "unetpp",
+      "label": "UNet++",
+      "kind": "checkpoint",
+      "checkpoint": "data/runs/grid/grid_unetpp_bce_pw1_next/best.pt",
+      "tag": "grid_unetpp_bce_pw1_next",
+      "threshold": 0.08
+    },
+    {
+      "id": "vit",
+      "label": "ViT",
+      "kind": "checkpoint",
+      "checkpoint": "data/runs/grid/grid_vit_bce_pw5_next/best.pt",
+      "tag": "grid_vit_bce_pw5_next",
+      "threshold": 0.36
+    }
+  ]
+}
