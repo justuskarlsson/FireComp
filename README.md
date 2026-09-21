@@ -14,6 +14,8 @@ This repository contains the full pipeline: data sourcing, dataset construction,
 the benchmark models, baselines, the evaluation protocol and a browser-based
 viewer for inspecting predictions on the globe.
 
+**Dataset:** [huggingface.co/datasets/justuskarlsson/FireComp](https://huggingface.co/datasets/justuskarlsson/FireComp) (CC BY 4.0)
+
 ---
 
 ## The task
@@ -61,7 +63,25 @@ authenticated `earthengine` account, and NASA Earthdata (VIIRS) requires
 
 ---
 
-## Building the dataset
+## Getting the dataset
+
+The built dataset (130 649 samples, 8 zstd-compressed HDF5 shards + metadata),
+the region raster and the LA 2025 case-study samples are on Hugging Face and
+mirror the `data/` layout this code expects:
+
+```bash
+pip install -U "huggingface_hub[cli]"
+huggingface-cli download justuskarlsson/FireComp --repo-type dataset --local-dir data
+```
+
+This gives `data/next_day_v3/` (main dataset), `data/next_day_v3_case_study/`,
+`data/regions/` and `data/fire_areas.npz`. With that in place you can skip
+straight to [Training and evaluation](#training-and-evaluation). Building from
+scratch (below) is only needed to reproduce or extend the dataset.
+
+---
+
+## Building the dataset from scratch
 
 ```bash
 # 1. Choose VIIRS images per region and download VNP03 geolocation granules (resume-safe, shardable with -ji/-jn)
